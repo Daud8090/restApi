@@ -11,6 +11,15 @@ app.get("/",(req,res)=>{
     res.send("welcom")
 })
 
+app.listen(port,()=>{
+    console.log(`connected on port ${port}`)
+})
+
+
+
+
+
+
 
 //create a new student
 //using promise
@@ -25,7 +34,3 @@ app.get("/",(req,res)=>{
 //     })
 // })
 //using async await
-
-app.listen(port,()=>{
-    console.log(`connected on port ${port}`)
-})

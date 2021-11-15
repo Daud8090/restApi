@@ -1,18 +1,27 @@
 
-const Student=require("../../models/students")
+const Student = require("../../models/students")
 
 
 
-const create_student_service=async(req)=>{
-    // console.log(req.body)
-    //now get the data and add to the db
-    try{
-    const student=new Student(req);
-    const createStudent=await student.save();
-    return createStudent;
+const create_student_service = async (new_student) => {
+
+    try {
+        //extracting data by object destructuring
+        const { name, email, phone, address } = new_student;
+        //validating the fields
+        if (!name) throw "name empty";
+        else if (!email) throw "email empty";
+        else if (!phone) throw "phone empty";
+        else if (!address) throw "address empty";
+        else {
+            const student = new Student(new_student);
+            const createStudent = await student.save();
+            return createStudent;
+        }
+
     }
-    catch(e){
-        throw new Error("could not create")
+    catch (e) {
+        throw e;
     }
 }
-module.exports=create_student_service;
+module.exports = create_student_service;

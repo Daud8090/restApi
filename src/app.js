@@ -2,11 +2,12 @@ const express= require('express');
 const app=express();
 require("./db/conn");
 const port= process.env.PORT || 8000;
-const studentRouter=require("./routers/student")
+const allRouter=require("./routers/index.js")
 
 //express.json is used to recognise that the incoming rqst is hvaing json format
 app.use(express.json());
-app.use(studentRouter)
+//all student routes
+app.use(allRouter)
 app.get("/",(req,res)=>{
     res.send("welcom")
 })

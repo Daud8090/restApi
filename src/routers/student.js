@@ -8,16 +8,16 @@ const delete_student_controller = require("./controllers/delete_student_controll
 const patch_student_controller = require("./controllers/patch_student_controller")
 
 
-// creates a student
-studentRouter.post("/", create_student_controller)
 //get records of all the student
 studentRouter.get("/", get_all_students_controller)
+// creates a student
+studentRouter.post("/createStudent", create_student_controller)
 //get records of the specific student
-studentRouter.get("/:name", get_studentByName_controller)
+studentRouter.get("/getByName/:name?", get_studentByName_controller)
 //delete records of the specific student by giving the id of student
-studentRouter.delete("/:id", delete_student_controller)
+studentRouter.delete("/deleteById/:id?", delete_student_controller)
 //patch or update records of the specific student by giving the id of student
-studentRouter.patch("/:id", patch_student_controller)
+studentRouter.patch("/patchById/:id?", patch_student_controller)
 
 
 module.exports = studentRouter;

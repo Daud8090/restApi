@@ -2,16 +2,16 @@ const Student = require("../../models/students")
 
 
 
-const patch_student_service = async (req) => {
+const patch_student_service = async (student_to_patch,_id) => {
     try {
-        const _id = req.params.id;
-        const patchstudent = await Student.findByIdAndUpdate(_id, req.body, {
+        const patchstudent = await Student.findByIdAndUpdate(_id, student_to_patch.body, {
             new: true
         });
+        // console.log(patchstudent);
         return patchstudent;
     }
     catch (e) {
-        res.status(500).send(e);
+        throw e;
     }
 }
 module.exports = patch_student_service;

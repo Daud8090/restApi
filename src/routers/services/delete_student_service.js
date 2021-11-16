@@ -2,17 +2,20 @@ const Student = require("../../models/students")
 
 
 
-const delete_student_service = async (req) => {
-    // console.log(req.body)
-    //now get the data and add to the db
+const delete_student_service = async (_id) => {
     try {
-        const _id = req.params.id;
+        // const _id = student_to_delete.params.id;
         const delstudent = await Student.findByIdAndDelete(_id);
-        // console.log(individualData," yha aya")
+        console.log(delstudent);
+        if(delstudent)
         return delstudent;
+        else
+        {
+            return "";
+        }
     }
     catch (e) {
-        res.status(500).send(e);
+        throw e;
     }
 }
 module.exports = delete_student_service;

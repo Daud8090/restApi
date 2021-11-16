@@ -1,15 +1,15 @@
-
 const Student = require("../../models/students")
 
 
 
-const get_data_service = async () => {
+const get_all_students_service = async () => {
     try {
         const studentData = await Student.find();
+        // console.log(studentData);
         return studentData;
     }
     catch (e) {
-        throw new Error("could not found")
+        throw e;
     }
 }
-module.exports = get_data_service;
+module.exports = get_all_students_service;

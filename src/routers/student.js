@@ -2,25 +2,25 @@
 // every route
 
 const express = require('express');
-const router = new express.Router();
-// const Student = require("../models/students")
+const studentRouter = new express.Router();
+// importing all the services required
 const create_student_controller = require("./controllers/create_student_controller")
-const get_data_controller = require("./controllers/get_data_controller")
-const get_singleData_controller = require("./controllers/get_singleData_controller")
+const get_all_students_controller = require("./controllers/get_all_student_controller")
+const get_studentByName_controller = require("./controllers/get_studentByName_controller")
 const delete_student_controller = require("./controllers/delete_student_controller")
 const patch_student_controller = require("./controllers/patch_student_controller")
 
 
+//get records of all the student
+studentRouter.get("/", get_all_students_controller)
+// creates a student
+studentRouter.post("/createStudent", create_student_controller)
+//get records of the specific student
+studentRouter.get("/getByName/:name?", get_studentByName_controller)
+//delete records of the specific student by giving the id of student
+studentRouter.delete("/deleteById/:id?", delete_student_controller)
+//patch or update records of the specific student by giving the id of student
+studentRouter.patch("/patchById/:id?", patch_student_controller)
 
-router.post("/students", create_student_controller)
-router.get("/students", get_data_controller)
-//name should be like get_students_controller or get_all_students_controller data can be anything it's ambigous
 
-router.get("/students/:name", get_singleData_controller)
-//get_student_by_name_controller
-
-router.delete("/students/:id", delete_student_controller)
-router.patch("/students/:id", patch_student_controller)
-
-
-module.exports = router;
+module.exports = studentRouter;

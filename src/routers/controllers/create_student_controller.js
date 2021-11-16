@@ -1,15 +1,24 @@
-const create_student_service=require("../services/create_student_service");
+const create_student_service = require("../services/create_student_service");
 
+const create_student_controller = async (req, res) => {
+    try {
+        //send the student data to validate and save
+        const { name, email, phone, address } = req.body;
 
-//no acknowledgement to client in case some validation error occurs
-const create_student_controller=async(req,res)=>{
-    try{
-        // unable to understand that what should i send from client
-        const createStudent= await create_student_service(req.body)
-        return res.status(201).send(createStudent);
+        if (!name) throw "name empty";
+        else if (!email) throw "email empty";
+        else if (!phone) throw "phone empty";
+        else if (!address) throw "address empty";
+        else {
+            const new_student={name,email,phone,address};
+            const createStudent = await create_student_service(new_student)
+            return res.status(201).send(createStudent);
+        }
+
     }
-    catch(e){
-        return res.status(400).send(e);
+    catch (e) {
+        // console.log(e);
+        return res.status(400).send({ error: e });
     }
 }
-module.exports=create_student_controller;
+module.exports = create_student_controller;

@@ -15,23 +15,3 @@ app.get("/",(req,res)=>{
 app.listen(port,()=>{
     console.log(`connected on port ${port}`)
 })
-
-
-
-
-
-
-
-//create a new student
-//using promise
-// app.post("/students",(req,res)=>{
-//     // console.log(req.body)
-//     //now get the data and add to the db
-//     const student=new Student(req.body);
-//     student.save().then(()=>{
-//         res.status(201).send(student);
-//     }).catch((e)=>{
-//         res.status(400).send(e);
-//     })
-// })
-//using async await

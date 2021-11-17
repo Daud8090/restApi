@@ -1,6 +1,13 @@
 const express= require('express');
 const app=express();
-require("./db/conn");
+//mongoDb
+// require("./db/conn");
+//basic mysql
+// require("./db/mysqlconn");
+
+//using sequelize
+require('./db/sequelizeconn');
+
 const port= process.env.PORT || 8000;
 const allRouter=require("./routers/index.js")
 

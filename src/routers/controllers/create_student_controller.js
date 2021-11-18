@@ -1,6 +1,7 @@
 const create_student_service = require("../services/create_student_service");
 // const Student = require("../../models/students")
-
+// const ErrorLog = require("../../models/errorModel")
+const error_service=require('../services/error_service');
 
 /* using async await */
 
@@ -59,20 +60,22 @@ const create_student_controller = async (req, res) => {
         //send the student data to validate and save
         const { name, email, address } = req.body;
 
-        if (!name) throw "name empty";
-        else if (!email) throw "email empty";
-        else if (!address) throw "address empty";
+        if (!name) throw new Error("name empty");
+        else if (!email) throw new Error("email empty");
+        else if (!address) throw new Error("address empty");
         else {
-            const new_student={name,email,address};
-            console.log("below controller")
+            const new_student = { name, email, address };
+            // console.log("below controller")
             const createStudent = await create_student_service(new_student)
             return res.status(201).send(createStudent);
         }
 
     }
     catch (e) {
-        // console.log(e);
-        return res.status(400).send({ error: e });
+        // console.log("going in this")
+       const actualerror= await error_service(e)
+    //    console.log(actualerror)
+        return res.status(400).send({ error: e.message });
     }
 }
 

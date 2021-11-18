@@ -3,6 +3,7 @@
 
 module.exports = (sequelize, Sequelize) => {
     const Students = sequelize.define("student", {
+        //sequelize.BIGInteger
         id:{type:Sequelize.INTEGER,
             primaryKey:true,
             autoIncrement:true

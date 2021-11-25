@@ -19,7 +19,7 @@ app.use(express.json());
 //all student routes
 app.use(allRouter)
 app.get("/", (req, res) => {
-    res.send("welcom")
+    res.send({success:true,message:"welcom"})
 })
 
 app.listen(port, () => {

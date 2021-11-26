@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
+// var bodyParser = require('body-parser')
+// app.use(bodyParser.json())
+
 //mongoDb
-// require("./db/conn");
+require("./db/conn");
 //basic mysql
 // require("./db/mysqlconn");
 
@@ -9,7 +12,7 @@ const app = express();
 require('./db/sequelizeconn');
 
 //mongo db error logs
-require("./db/errorConn");
+// require("./db/errorConn");
 
 const port = process.env.PORT || 8000;
 const allRouter = require("./routers/index.js")

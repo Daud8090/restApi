@@ -1,14 +1,16 @@
 const express = require('express');
-const studentRouter = require("./student")
 const router = new express.Router();
-const jwt = require('jsonwebtoken');
+const studentRouter = require("./student")
 const loginRouter=require('./login');
-// const verifyToken=require('../auth/auth');
+const signupRouter=require('./signup');
 
 
 router.use('/students', studentRouter);
-router.use('/api/login',loginRouter);
+router.use('/admin/login',loginRouter);
+router.use('/admin/register',loginRouter);
 
+
+module.exports = router;
 
 
 
@@ -73,5 +75,3 @@ router.use('/api/login',loginRouter);
 
 
 
-
-module.exports = router;

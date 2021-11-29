@@ -7,7 +7,7 @@ const signupRouter=require('./signup');
 
 router.use('/students', studentRouter);
 router.use('/admin/login',loginRouter);
-router.use('/admin/register',loginRouter);
+router.use('/admin/register',signupRouter);
 
 
 module.exports = router;

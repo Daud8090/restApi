@@ -18,7 +18,8 @@ const login_controller = async (req, res) => {
 
             const anotherAdmin = { email, password };
             const getAdmin = await login_service(anotherAdmin)
-            if(getAdmin)
+            console.log(getAdmin)
+            if(!getAdmin)
             {
                 jwt.sign({ user: getAdmin }, 'secretKey', (err, token) => {
                     res.json({

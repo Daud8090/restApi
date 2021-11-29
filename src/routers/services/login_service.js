@@ -1,33 +1,28 @@
 const Admin = require("../../models/adminModel")
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt')
 
 
 /* using async await */
 
 const login_service = async (new_admin) => {
     try {
-        const adminExists = await Admin.findOne(new_admin);
+        const adminExists = await Admin.findOne({ email: new_admin.email });
 
         if (adminExists) {
+            const isMatch =await bcrypt.compare(new_admin.password,adminExists.password);
+            if(isMatch)
             return adminExists
-            // const pasMatch = await Admin.findOne({ password: new_admin.password })
-            // if (!pasMatch)
-            //     return res.status(400).json({ error: "invalid credentials" })
-            // else {
-                    // jwt.sign({ user: new_admin }, 'secretKey', (err, token) => {
-                    //     return {
-                    //         token: token,
-                    //         "message":"successfully login"
-                    //     }
-                    // })
-            // }
+            else{
+                throw new Error("invalid credentials1")
+            }
         }
         else {
-            return { error: "invalid credentials" }
+            throw new Error("invalid credentials2")
         }
     }
     catch (e) {
-        throw e;
+        throw new Error(e);
     }
 }
 

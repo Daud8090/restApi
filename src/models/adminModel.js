@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator=require("validator");
+const bcrypt = require('bcrypt')
 
 
 
@@ -18,6 +19,21 @@ const signupSchema = new mongoose.Schema({
     },
     timestamp: { type: Date, default: Date.now},   
 })
+
+// perform the pre function which will bcrypt the password
+
+signupSchema.pre('save',async function(next){
+if(this.isModified('password')){
+    this.password=await bcrypt.hash(this.password,12);
+}
+next();
+})
+
+
+
+
+
+
 
 // now we will create a new model
 
